@@ -15,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table
+@Table(name = "items")
 public class Item {
 
     /**
@@ -28,6 +28,7 @@ public class Item {
 
     /**
      * The name of the item.
+     * Necessary record and cannot be null
      */
     @Column(nullable = false)
     private String name;
@@ -40,8 +41,9 @@ public class Item {
 
     /**
      * The quantity of the item in stock.
+     * Necessary record and cannot be null
      */
-    @Column
+    @Column(nullable = false)
     private int quantity;
 
     /**
