@@ -1,14 +1,15 @@
 package com.hobbyshop.api.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.hobbyshop.api.model.User;
 import com.hobbyshop.api.repository.UserRepository;
 import com.hobbyshop.api.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-
-    
 
     public UserServiceImpl(UserRepository userRepository) {
         super();
