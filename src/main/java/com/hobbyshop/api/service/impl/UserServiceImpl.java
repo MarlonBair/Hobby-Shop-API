@@ -2,6 +2,7 @@ package com.hobbyshop.api.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.hobbyshop.api.exception.ResourceNotFoundException;
 import com.hobbyshop.api.model.User;
 import com.hobbyshop.api.repository.UserRepository;
 import com.hobbyshop.api.service.UserService;
@@ -22,21 +23,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user, long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+    public User getUserByUserID(long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> 
+            new ResourceNotFoundException("User", "ID", userId));
+
     }
 
     @Override
-    public User getUserByUserID(long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserByUserID'");
+    public User updateUser(User newUserData, long userId) {
+        User currentUser = userRepository.findById(userId).orElseThrow(() ->
+            new ResourceNotFoundException("User", "ID", userId));
+        
+        currentUser.setName(newUserData.getName());
+        currentUser.setEmail(newUserData.getEmail());
+        currentUser.setPurchases(newUserData.getPurchases());
+       
+        userRepository.save(currentUser);
+
+        return currentUser;
     }
 
     @Override
     public void deleteUser(long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        
+        userRepository.findById(userId).orElseThrow(() ->
+            new ResourceNotFoundException("User", "ID", userId));
+        
+        userRepository.deleteById(userId);;
     }
 
     
