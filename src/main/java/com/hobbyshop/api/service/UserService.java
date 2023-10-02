@@ -6,7 +6,7 @@ public interface UserService {
 
     User saveUser(User user);
 
-    User getUserByUserID(long userId);
+    User getUserByUserId(long userId);
 
     User updateUser(User user, long userId);
 

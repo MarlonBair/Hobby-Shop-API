@@ -18,17 +18,33 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Test class for UserController.
+ */
+
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
     
+    /**
+     * MockMvc needed to simulate HTTP requests.
+     */
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * Mock UserService for testing.
+     */
     @MockBean
     private UserService userService;
 
+    /**
+     * User instance for testing.
+     */
     private User user;
 
+    /**
+     * Test initialization.
+     */
     @BeforeEach
     void setUp() {
         user = new User();
@@ -36,6 +52,12 @@ public class UserControllerTest {
         user.setEmail("johndoe@email.com");
     }
 
+
+    /**
+     * Tests saveUser with a POST request.
+     * 
+     * @throws Exception if any exception occurs.
+     */
     @Test
     void saveUser() throws Exception {
 
@@ -51,10 +73,15 @@ public class UserControllerTest {
 
     }
 
+    /**
+     * Tests getUserByUserId with a GET request.
+     * 
+     * @throws Exception if any exception occurs.
+     */
     @Test
     void getUserByUserID() throws Exception {
         long userId = 1L;
-        given(userService.getUserByUserID(userId)).willReturn(user);
+        given(userService.getUserByUserId(userId)).willReturn(user);
 
         mockMvc.perform(get("/api/users/" + userId)
             .contentType(MediaType.APPLICATION_JSON))
@@ -64,6 +91,11 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));
     }
 
+    /**
+     * Tests updateUser with a PUT request.
+     * 
+     * @throws Exception if any exception occurs.
+     */
     @Test
     void updateUser() throws Exception {
         long userId = 1L;
@@ -80,6 +112,11 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));;
     }
 
+    /**
+     * Tests deleteUser with a DELETE request.
+     * 
+     * @throws Exception if any exception occurs.
+     */
     @Test
     void deleteUser() throws Exception {
         long userId = 1L;
