@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 /**
- * Represents a recorded purchase 
+ * Represents a recorded purchase.
  */
 @Data
 @Entity
@@ -22,7 +22,7 @@ public class Purchase {
     
     /**
      * The unique ID of the purchase.
-     * Generated automatically, which the PostgreSQL database will increment automatically  
+     * Generated automatically, which the PostgreSQL database will increment automatically.  
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -20,7 +20,7 @@ public class Item {
 
     /**
      * The unique ID of the item.
-     * Generated automatically, which the PostgreSQL database will increment automatically  
+     * Generated automatically, which the PostgreSQL database will increment automatically.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Item {
 
     /**
      * The name of the item.
-     * Necessary record and cannot be null
+     * Necessary record and cannot be null.
      */
     @Column(nullable = false)
     private String name;
@@ -41,13 +41,13 @@ public class Item {
 
     /**
      * The quantity of the item in stock.
-     * Necessary record and cannot be null
+     * Necessary record and cannot be null.
      */
     @Column(nullable = false)
     private int quantity;
 
     /**
-     * The price of the item, with a 
+     * The price of the item, with a 1:1 ratio to USD.
      * Due to the precision and scale of the BigDecimal, the maximum value is 9999999.99.
      */
     @Column(precision = 9, scale = 2) 
