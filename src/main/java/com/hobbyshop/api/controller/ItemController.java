@@ -109,5 +109,4 @@ public class ItemController {
         itemService.deleteItem(itemId);
         return new ResponseEntity<String>("Item deleted successfully.", HttpStatus.OK);
     }
-
 }
