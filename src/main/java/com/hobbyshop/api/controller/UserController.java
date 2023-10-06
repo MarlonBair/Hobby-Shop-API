@@ -1,5 +1,7 @@
 package com.hobbyshop.api.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hobbyshop.api.model.Purchase;
 import com.hobbyshop.api.model.User;
 import com.hobbyshop.api.service.UserService;
 
 /**
- * Controller for endpoints for User CRUD operations
+ * Controller for endpoints for User CRUD operations.
  */
 @RestController
 @RequestMapping("/api/users")
@@ -23,13 +26,7 @@ public class UserController {
     
     private UserService userService;
 
-    /**
-     * Constructs a new UserController instance.
-     * 
-     * @param userService The service for User operations.
-     */
     public UserController(UserService userService) {
-        super();
         this.userService = userService;
     }
 
@@ -56,6 +53,27 @@ public class UserController {
 
     }
 
+    /**
+     * Retrieves all Users in the database.
+     * 
+     * @return ResponseEntity containing List of all Users and HTTP status.
+     */
+    @GetMapping()
+    public ResponseEntity<List<User>> listAllUsers() {
+        return new ResponseEntity<List<User>>(userService.listAllUsers(), HttpStatus.OK);
+    }
+
+    /**
+     * Retrieves all Purchases made by a User.
+     * 
+     * @param userId ID of User whose Purchases to retrieve.
+     * @return ResponseEntity containing List of Purchases and HTTP status.
+     */
+    @GetMapping("{id}/purchases")
+    public ResponseEntity<List<Purchase>> getPurchasesByUserId(@PathVariable("id") long userId) {
+        return new ResponseEntity<List<Purchase>>(userService.getAllPurchasesByUserId(userId), HttpStatus.OK);
+    }
+
      /**
      * Updates an existing User by its ID.
      * 
@@ -78,8 +96,5 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable("id") long userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<String>("User deleted successfully.", HttpStatus.OK);
-    }
-
-
-    
+    } 
 }
