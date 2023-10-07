@@ -9,7 +9,9 @@
 
  1. Clone the repository.
       
- ```$ git clone https://github.com/MarlonBair/Hobby-Shop-API.git```
+ ```sh 
+ $ git clone https://github.com/MarlonBair/Hobby-Shop-API.git
+```
 
  2. Start the databse.
       
