@@ -35,4 +35,11 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 | URL | METHOD | DESCRIPTION | BODY |
 | /api/users/{id} | GET | Retrieves a User by its ID. | |
 
+| Endpoint         | Method | Description               | Parameters | Body                     | Response  | Auth      |
+| ---------------  | ------ | ------------------------- | ---------- | ------------------------ | --------- | --------- |
+| `/api/users`     | GET    | Retrieve list of users    | None       | None                     | 200, 404  | Bearer Token |
+| `/api/users/:id` | GET    | Retrieve a specific user  | `id`       | None                     | 200, 404  | Bearer Token |
+| `/api/users`     | POST   | Create a new user         | None       | `{ "name": "John" }`     | 201      | Bearer Token |
+
+
 
