@@ -52,3 +52,28 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 | /api/items/{id} | PUT | Updates an existing Item by its ID. | Item JSON |
 | /api/items/{id}/quantity | PATCH | Updates the quantity of Item by a given amount. | Integer |
 | /api/items/{id} | DELETE | Deletes an Item by its ID. | |
+
+# Example JSON bodies:
+  
+User (Also contains list of Purchase entities):
+{
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}
+  
+Purchase:
+{
+    "userId": 1,
+    "itemId": 1,
+    "purchaseDate": "2023-10-06"
+}
+
+Item:
+{
+    "name": "Item A",
+    "description": "A cool item.",
+    "quantity": 1,
+    "price": 19.99
+}
+
+
