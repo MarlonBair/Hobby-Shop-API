@@ -30,7 +30,7 @@ mvn spring-boot:run
      
 The application, by Spring Boot default, runs on port 8080, and is accessible at http://localhost:8080
 
-5. *Optional* Run tests:
+5. ***Optional*** Run tests:
 In Hobby-Shop-API/ run
 ```sh
 mvn test
