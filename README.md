@@ -4,8 +4,8 @@
 
 # Installation:
  **Requirements: JDK 17, Maven, Docker **
- 1. 
- 2. 
+ 1. A
+ 2. B
 
 # User Endpoints:
 
