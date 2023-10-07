@@ -32,7 +32,7 @@ The application, by Spring Boot default, runs on port 8080, and is accessible at
 
 5. ***Optional*** Run tests:
   
-In Hobby-Shop-API/ run
+Run in root directory (Hobby-Shop-API/): 
 ```sh
 mvn test
 ```
