@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
     
     /**
      * Updates User attributes.
+     * Purchases must be updated directly, and are not updated by this method.
      * 
      * @param newUserData The new data for the User.
      * @param userId The ID of the User to update.
@@ -89,7 +90,6 @@ public class UserServiceImpl implements UserService {
         
         currentUser.setName(newUserData.getName());
         currentUser.setEmail(newUserData.getEmail());
-        currentUser.setPurchases(newUserData.getPurchases());
        
         userRepository.save(currentUser);
 
