@@ -1,7 +1,7 @@
 # Hobby Shop API
 ***Currently Work-in-progress***  
 
- RESTful API for supporting an E-Hobby Shop. This API allows for user managment, inventory control, and purchase operations. 
+ RESTful API for supporting an E-Hobby Shop. This API allows for user management, inventory control, and purchase operations. 
 
 # Installation:
  ***Requirements: JDK 17, Maven, Docker***  
