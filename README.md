@@ -53,7 +53,7 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 | /api/items/{id}/quantity | PATCH | Updates the quantity of Item by a given amount. | Integer |
 | /api/items/{id} | DELETE | Deletes an Item by its ID. | |
 
-# Example JSON bodies:
+# Example JSON Bodies:
   
 User (Also contains list of Purchase entities):
 {
