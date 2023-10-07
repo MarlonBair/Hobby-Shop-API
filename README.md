@@ -28,7 +28,7 @@ mvn spring-boot:run
 ```
 4. Access application:
      
-The application, by Spring Boot default, runs on port 8080, and is accessible by http://localhost:8080
+The application, by Spring Boot default, runs on port 8080, and is accessible at http://localhost:8080
 
 # User Endpoints:
 

@@ -97,4 +97,5 @@ public class UserController {
         userService.deleteUser(userId);
         return new ResponseEntity<String>("User deleted successfully.", HttpStatus.OK);
     } 
+    
 }

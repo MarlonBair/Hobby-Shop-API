@@ -11,12 +11,18 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hobbyshop.api.controller.UserController;
+import com.hobbyshop.api.exception.ResourceNotFoundException;
+import com.hobbyshop.api.model.Purchase;
 import com.hobbyshop.api.model.User;
 import com.hobbyshop.api.service.UserService;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Test class for UserController.
@@ -42,9 +48,6 @@ public class UserControllerTest {
      */
     private User user;
 
-    /**
-     * Test initialization.
-     */
     @BeforeEach
     void setUp() {
         user = new User();
@@ -52,12 +55,6 @@ public class UserControllerTest {
         user.setEmail("johndoe@email.com");
     }
 
-
-    /**
-     * Tests saveUser with a POST request.
-     * 
-     * @throws Exception if any exception occurs.
-     */
     @Test
     void saveUser() throws Exception {
 
@@ -70,16 +67,10 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(user.getUserId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(user.getName()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));
-
     }
 
-    /**
-     * Tests getUserByUserId with a GET request.
-     * 
-     * @throws Exception if any exception occurs.
-     */
     @Test
-    void getUserByUserID() throws Exception {
+    void getUserByUserId() throws Exception {
         long userId = 1L;
         given(userService.getUserByUserId(userId)).willReturn(user);
 
@@ -91,11 +82,50 @@ public class UserControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));
     }
 
-    /**
-     * Tests updateUser with a PUT request.
-     * 
-     * @throws Exception if any exception occurs.
-     */
+    @Test
+    void listAllUsers() throws Exception {
+        List<User> users = Arrays.asList(user);
+
+        given(userService.listAllUsers()).willReturn(users);
+
+        mockMvc.perform(get("/api/users")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].userId").value(user.getUserId()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(user.getName()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].email").value(user.getEmail()));
+    }
+
+    @Test
+    void getAllPurchasesByUserId() throws Exception {
+        long userId = 1L;
+
+        Purchase purchase = new Purchase();
+        purchase.setPurchaseId(101L);
+        purchase.setPurchaseDate(LocalDate.of(2023, 1, 1));
+
+        List<Purchase> purchases = Arrays.asList(purchase);
+
+        given(userService.getAllPurchasesByUserId(userId)).willReturn(purchases);
+
+        mockMvc.perform(get("/api/users/" + userId + "/purchases")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].purchaseId").value(purchase.getPurchaseId()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].purchaseDate").value(purchase.getPurchaseDate().toString()));
+    }
+
+    @Test
+    void getAllPurchasesByUserIdNotFound() throws Exception {
+        long userId = 1L;
+
+        given(userService.getAllPurchasesByUserId(userId)).willThrow(new ResourceNotFoundException("User", "ID", userId));
+
+        mockMvc.perform(get("/api/users/" + userId + "/purchases")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+    }
+
     @Test
     void updateUser() throws Exception {
         long userId = 1L;
@@ -109,14 +139,9 @@ public class UserControllerTest {
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(user.getUserId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(user.getName()))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));;
+            .andExpect(MockMvcResultMatchers.jsonPath("$.email").value(user.getEmail()));
     }
 
-    /**
-     * Tests deleteUser with a DELETE request.
-     * 
-     * @throws Exception if any exception occurs.
-     */
     @Test
     void deleteUser() throws Exception {
         long userId = 1L;
@@ -124,10 +149,5 @@ public class UserControllerTest {
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }
-
-    // TODO
-    // TODO
-
-
 
 }
