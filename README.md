@@ -5,9 +5,10 @@
 
 # Installation:
  ***Requirements: JDK 17, Maven, Docker***  
- 
- 1. ```git clone https://github.com/MarlonBair/HTTP_Server.git```
- 2. B
+
+ 1. Clone the repository.
+ ```git clone https://github.com/MarlonBair/Hobby-Shop-API.git```
+ 2. 
 
 # User Endpoints:
 
