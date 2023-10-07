@@ -55,20 +55,20 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 
 # Example JSON Bodies:
   
-User (Also contains list of Purchase entities):
+User (Also contains list of Purchase entities):  
 {
     "name": "John Doe",
     "email": "john.doe@example.com"
 }
   
-Purchase:
+Purchase:  
 {
     "userId": 1,
     "itemId": 1,
     "purchaseDate": "2023-10-06"
 }
 
-Item:
+Item:  
 {
     "name": "Item A",
     "description": "A cool item.",
