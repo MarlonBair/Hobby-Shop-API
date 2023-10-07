@@ -33,6 +33,7 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 # User Endpoints:
 
 | URL | METHOD | DESCRIPTION | BODY |
+| - | - | - | - |
 | /api/users/{id} | GET | Retrieves a User by its ID. | |
 
 | Endpoint         | Method | Description               | Parameters | Body                     | Response  | Auth      |
