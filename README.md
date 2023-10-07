@@ -6,9 +6,13 @@
 # Installation:
  ***Requirements: JDK 17, Maven, Docker***  
 
- 1. Clone the repository.
- ```git clone https://github.com/MarlonBair/Hobby-Shop-API.git```
- 2. 
+ 1. Clone the repository.  
+ ```$ git clone https://github.com/MarlonBair/Hobby-Shop-API.git```
+ 2. Start the databse.  
+```sh
+$ cd Hobby-Shop-API/src/main/resources/
+$ docker-compose up
+```
 
 # User Endpoints:
 
