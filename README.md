@@ -1,4 +1,10 @@
 # Hobby Shop API
- RESTful API for an E-Hobby Shop. This API allows for user, purchase, and inventory management. 
+ RESTful API for supporting an E-Hobby Shop. This API allows for user managment, purchase operations, and inventory control. 
  
- ***Currently Work-in-progress***
+***Currently Work-in-progress***
+
+# Getting Started:
+
+# User Endpoints:
+
+
