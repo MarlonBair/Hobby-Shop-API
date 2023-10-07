@@ -1,7 +1,7 @@
 # Hobby Shop API
 ***Currently Work-in-progress***  
 
- RESTful API for supporting an E-Hobby Shop. This API allows for user managment, purchase operations, and inventory control. 
+ RESTful API for supporting an E-Hobby Shop. This API allows for user managment, inventory control, and purchase operations. 
 
 # Installation:
  ***Requirements: JDK 17, Maven, Docker***  
@@ -62,14 +62,6 @@ User (Also contains list of Purchase entities):
     "email": "john.doe@example.com"
 }
 ```  
-Purchase:  
-```json
-{
-    "userId": 1,
-    "itemId": 1,
-    "purchaseDate": "2023-10-06"
-}
-```
 Item:  
 ```json  
 {
@@ -77,6 +69,14 @@ Item:
     "description": "A cool item.",
     "quantity": 1,
     "price": 19.99
+}
+```
+Purchase:  
+```json
+{
+    "userId": 1,
+    "itemId": 1,
+    "purchaseDate": "2023-10-06"
 }
 ```
 
