@@ -34,9 +34,21 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 
 | URL | METHOD | DESCRIPTION | BODY |
 | - | - | - | - |
-| /api/users/ | POST | Saves a new User to the database. | User JSON |
+| /api/users | POST | Saves a new User to the database. | User JSON |
 | /api/users/{id} | GET | Retrieves a User by its ID. | |
-| /api/users/ | GET | Retrieves all Users in the database. | |
+| /api/users | GET | Retrieves all Users in the database. | |
 | /api/users/{id}/purchases | GET | Retrieves all Purchases made by a User. | |
 | /api/users/{id} | PUT | Updates an existing User by its ID. Doesn't update purchases. | User JSON |
 | /api/users/{id} | DELETE | Deletes a User by its ID. | |
+  
+# Item Endpoints:
+
+| URL | METHOD | DESCRIPTION | BODY |
+| - | - | - | - |
+| /api/items | POST | Saves a new Item to the database. | Item JSON |
+| /api/items/{id} | GET | Retrieves an Item by its ID. | |
+| /api/items/{id}/purchases | GET | Retrieves all Purchases for an Item by its ID. | |
+| /api/items/{id} | GET | Retrieves all Items in database. | |
+| /api/items/{id} | PUT | Updates an existing Item by its ID. | Item JSON |
+| /api/items/{id}/quantity | PATCH | Updates the quantity of Item by a given amount. | Integer |
+| /api/items/{id} | DELETE | Deletes an Item by its ID. | |
