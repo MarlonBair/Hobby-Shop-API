@@ -54,20 +54,22 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 | /api/items/{id} | DELETE | Deletes an Item by its ID. | |
 
 # Example JSON Bodies:
-  
+```json  
 User (Also contains list of Purchase entities):  
 {
     "name": "John Doe",
     "email": "john.doe@example.com"
 }
-  
+```  
 Purchase:  
+```json
 {
     "userId": 1,
     "itemId": 1,
     "purchaseDate": "2023-10-06"
 }
-
+```
+```json  
 Item:  
 {
     "name": "Item A",
@@ -75,5 +77,5 @@ Item:
     "quantity": 1,
     "price": 19.99
 }
-
+```
 
