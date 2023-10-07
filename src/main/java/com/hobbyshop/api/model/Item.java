@@ -24,7 +24,7 @@ public class Item {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long itemId;
+    private Long itemId;
 
     /**
      * The name of the item.
@@ -44,7 +44,7 @@ public class Item {
      * Necessary record and cannot be null.
      */
     @Column(nullable = false)
-    private int quantity;
+    private Integer quantity;
 
     /**
      * The price of the item, with a 1:1 ratio to USD.

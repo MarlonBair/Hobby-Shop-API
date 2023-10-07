@@ -26,7 +26,7 @@ public class Purchase {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long purchaseId;
+    private Long purchaseId;
 
     /**
      * The user who made the purchase.

@@ -1,64 +1,89 @@
 package com.hobbyshop.api.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hobbyshop.api.exception.ResourceNotFoundException;
+import com.hobbyshop.api.model.Purchase;
 import com.hobbyshop.api.model.User;
 import com.hobbyshop.api.repository.UserRepository;
 import com.hobbyshop.api.service.UserService;
 
 /**
- * UserService implementation.
+ * Implementation for UserService.
  */
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
-    /**
-     * Constructs a new UserServiceImpl instance with the given UserRepository.
-     * 
-     * @param userRepository The repository for User entities.
-     */
     public UserServiceImpl(UserRepository userRepository) {
-        super();
         this.userRepository = userRepository;
     }
 
      /**
-     * Saves a given user to database.
+     * Saves a given User to database.
      * 
-     * @param user The user entity to save.
-     * @return The saved user entity.
+     * @param user The User entity to save.
+     * @return The saved User entity.
      */
     @Override
+    @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
     /**
-     * Retrieves a user from database by its id.
+     * Retrieves a User from database by its ID.
      * 
-     * @param userId The ID of the user to retrieve.
-     * @return The retrieved user entity.
-     * @throws ResourceNotFoundException If no user with the given ID is found.
+     * @param userId The ID of the User to retrieve.
+     * @return The retrieved User entity.
+     * @throws ResourceNotFoundException If no User with the given ID is found.
      */
     @Override
-    public User getUserByUserId(long userId) {
+    public User getUserByUserId(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> 
             new ResourceNotFoundException("User", "ID", userId));
     }
 
     /**
-     * Updates all user attributes.
+     * Retrieves all Users from the database.
      * 
-     * @param newUserData The new data for the user.
-     * @param userId The ID of the user to update.
-     * @return The updated user entity.
-     * @throws ResourceNotFoundException If no user with the given ID is found.
+     * @return List of all Users.
      */
     @Override
-    public User updateUser(User newUserData, long userId) {
+    public List<User> listAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * Retrieves all Purchases made by User.
+     * 
+     * @param userId ID of target User.
+     * @return List of all Purchases made by User.
+     * @throws ResourceNotFoundException If no User with the given ID is found.
+     */
+    @Override
+    public List<Purchase> getAllPurchasesByUserId(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() ->
+            new ResourceNotFoundException("User", "ID", userId));
+
+        return user.getPurchases();
+    }  
+    
+    /**
+     * Updates User attributes.
+     * 
+     * @param newUserData The new data for the User.
+     * @param userId The ID of the User to update.
+     * @return The updated User entity.
+     * @throws ResourceNotFoundException If no User with the given ID is found.
+     */
+    @Override
+    @Transactional
+    public User updateUser(User newUserData, Long userId) {
         User currentUser = userRepository.findById(userId).orElseThrow(() ->
             new ResourceNotFoundException("User", "ID", userId));
         
@@ -72,19 +97,18 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Deletes a user by its ID.
+     * Deletes a User by its ID.
      * 
-     * @param userId The ID of the user to delete.
-     * @throws ResourceNotFoundException If no user with the given ID is found.
+     * @param userId The ID of the User to delete.
+     * @throws ResourceNotFoundException If no User with the given ID is found.
      */
     @Override
-    public void deleteUser(long userId) {
+    @Transactional
+    public void deleteUser(Long userId) {
 
         userRepository.findById(userId).orElseThrow(() ->
             new ResourceNotFoundException("User", "ID", userId));
         
-        userRepository.deleteById(userId);;
-    }
-
-    
+        userRepository.deleteById(userId);
+    } 
 }
