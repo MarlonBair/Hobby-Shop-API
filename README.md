@@ -17,7 +17,7 @@ git clone https://github.com/MarlonBair/Hobby-Shop-API.git
       
 ```sh
 cd Hobby-Shop-API/src/main/resources/
-docker-compose up -d
+docker-compose up -d 
 ```
 
 3. Start the application:
