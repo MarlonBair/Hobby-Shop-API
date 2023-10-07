@@ -7,17 +7,24 @@
  ***Requirements: JDK 17, Maven, Docker***  
 
 
- 1. Clone the repository.
+ 1. Clone the repository:
       
  ```sh 
- $ git clone https://github.com/MarlonBair/Hobby-Shop-API.git
+git clone https://github.com/MarlonBair/Hobby-Shop-API.git
 ```
 
- 2. Start the databse.
+ 2. Start the databse:
       
 ```sh
-$ cd Hobby-Shop-API/src/main/resources/
-$ docker-compose up
+cd Hobby-Shop-API/src/main/resources/
+docker-compose up -d
+```
+
+3. Start the application:
+  
+```sh
+cd ../../../
+mvn spring-boot:run
 ```
 
 # User Endpoints:
