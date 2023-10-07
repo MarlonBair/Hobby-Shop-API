@@ -34,4 +34,5 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 
 | URL | METHOD | DESCRIPTION | BODY |
 | - | - | - | - |
+| /api/users/ | GET | Saves a new User to the database. | JSON |
 | /api/users/{id} | GET | Retrieves a User by its ID. | |
