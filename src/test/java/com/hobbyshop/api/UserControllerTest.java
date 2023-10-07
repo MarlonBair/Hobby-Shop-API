@@ -27,7 +27,6 @@ import java.util.List;
 /**
  * Test class for UserController.
  */
-
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
     
