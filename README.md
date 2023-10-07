@@ -13,17 +13,17 @@
 git clone https://github.com/MarlonBair/Hobby-Shop-API.git
 ```
 
- 2. Start the databse:
+ 2. Start the database:
       
 ```sh
 cd Hobby-Shop-API/src/main/resources/
-docker-compose up -d 
+docker-compose up 
 ```
 
-3. Start the application:
+3. (In a new terminal) Start the application:
   
 ```sh
-cd ../../../
+cd Hobby-Shop-API
 mvn spring-boot:run
 ```
 4. Access application:
@@ -48,9 +48,9 @@ The application, by Spring Boot default, runs on port 8080, and is accessible by
 | /api/items | POST | Saves a new Item to the database. | Item JSON |
 | /api/items/{id} | GET | Retrieves an Item by its ID. | |
 | /api/items/{id}/purchases | GET | Retrieves all Purchases for an Item by its ID. | |
-| /api/items/{id} | GET | Retrieves all Items in database. | |
+| /api/items | GET | Retrieves all Items in database. | |
 | /api/items/{id} | PUT | Updates an existing Item by its ID. | Item JSON |
-| /api/items/{id}/quantity | PATCH | Updates the quantity of Item by a given amount. | Integer |
+| /api/items/{id}/quantity | PATCH | Updates the quantity of Item by addition of a given amount. | Integer |
 | /api/items/{id} | DELETE | Deletes an Item by its ID. | |
 
 # Example JSON Bodies:
