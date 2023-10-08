@@ -73,6 +73,25 @@ public class UserControllerTest {
     }
 
     @Test
+    void createPurchaseForUser() throws Exception {
+        long userId = 1L;
+        long itemId = 1001L;
+
+        Purchase mockPurchase = new Purchase();
+        mockPurchase.setPurchaseId(101L);
+        mockPurchase.setPurchaseDate(LocalDate.of(2023, 10, 1));
+
+        given(purchaseService.createPurchase(userId, itemId)).willReturn(mockPurchase);
+
+        mockMvc.perform(post("/api/users/" + userId + "/purchases")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(new ObjectMapper().writeValueAsString(itemId)))
+            .andExpect(status().isCreated()) 
+            .andExpect(MockMvcResultMatchers.jsonPath("$.purchaseId").value(mockPurchase.getPurchaseId()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.purchaseDate").value(mockPurchase.getPurchaseDate().toString()));
+    }
+
+    @Test
     void getUserByUserId() throws Exception {
         long userId = 1L;
         given(userService.getUserByUserId(userId)).willReturn(user);
