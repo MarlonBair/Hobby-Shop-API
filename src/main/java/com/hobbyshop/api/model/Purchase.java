@@ -2,6 +2,8 @@ package com.hobbyshop.api.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,9 +32,12 @@ public class Purchase {
 
     /**
      * The user who made the purchase.
+     * 
+     * @JsonBackReference prevents infinite recursion. 
      */
     @ManyToOne
     @JoinColumn(name = "userId")
+    @JsonBackReference
     private User user;
 
     /**

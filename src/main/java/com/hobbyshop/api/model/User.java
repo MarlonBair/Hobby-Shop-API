@@ -3,6 +3,8 @@ package com.hobbyshop.api.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,10 +47,13 @@ public class User {
 
     /**
      * List of user's purchases.
+     * 
      * Lazy loaded (Not fetched unless requested) for efficiency.
      * Any operations on this list will cascade to item.
+     * @JsonManagedReference prevents infinite recursion. 
      */
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Purchase> purchases = new ArrayList<>();
 
 }
