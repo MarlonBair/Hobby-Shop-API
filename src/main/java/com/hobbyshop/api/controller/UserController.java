@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hobbyshop.api.model.Purchase;
 import com.hobbyshop.api.model.User;
+import com.hobbyshop.api.service.PurchaseService;
 import com.hobbyshop.api.service.UserService;
 
 /**
@@ -25,16 +26,18 @@ import com.hobbyshop.api.service.UserService;
 public class UserController {
     
     private UserService userService;
+    private PurchaseService purchaseService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PurchaseService purchaseService) {
         this.userService = userService;
+        this.purchaseService = purchaseService;
     }
 
     /**
      * Saves a new User to the database.
      * 
      * @param user The User entity to be saved.
-     * @return ResponseEntity containing the saved User entity and the HTTP status.
+     * @return ResponseEntity containing the saved User entity and HTTP status.
      */
     @PostMapping()
     public ResponseEntity<User> saveUser(@RequestBody User user) {
@@ -42,9 +45,21 @@ public class UserController {
     }
 
     /**
+     * Creates a new Purchase for specified User. 
+     * 
+     * @param userId Id of User making the Purchase. 
+     * @param itemId Id of Item being purchased.
+     * @return ResponseEntity containing the created Purchase and HTTP Status.
+     */
+    @PostMapping("{id}/purchases")
+    public ResponseEntity<Purchase> createPurchase(@PathVariable("id") Long userId, @RequestBody Long itemId) {
+        return new ResponseEntity<Purchase>(purchaseService.createPurchase(userId, itemId), HttpStatus.CREATED);
+    }
+
+    /**
      * Retrieves a User by its ID.
      * 
-     * @param userId The ID of the User to retrieve.
+     * @param userId ID of the User to retrieve.
      * @return ResponseEntity containing the retrieved User entity and the HTTP status.
      */
     @GetMapping("{id}")
@@ -77,8 +92,8 @@ public class UserController {
      /**
      * Updates an existing User by its ID.
      * 
-     * @param userId The ID of the User to update.
-     * @param user The updated User entity.
+     * @param userId ID of the User to update.
+     * @param user Updated User entity.
      * @return ResponseEntity containing the updated User entity and the HTTP status.
      */
     @PutMapping("{id}")
@@ -89,7 +104,7 @@ public class UserController {
     /**
      * Deletes a User by its ID.
      * 
-     * @param userId The ID of the User to delete.
+     * @param userId ID of the User to delete.
      * @return ResponseEntity with a confirmation message and the HTTP status.
      */
     @DeleteMapping("{id}")

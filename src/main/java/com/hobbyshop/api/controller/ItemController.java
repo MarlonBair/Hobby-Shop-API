@@ -34,8 +34,8 @@ public class ItemController {
     /**
      * Saves a new Item to the database.
      * 
-     * @param item The Item entity to be saved.
-     * @return ResponseEntity containing the saved Item entity and the HTTP status.
+     * @param item Item entity to be saved.
+     * @return ResponseEntity containing the saved Item entity and HTTP status.
      */
     @PostMapping()
     public ResponseEntity<Item> saveItem(@RequestBody Item item) {
@@ -45,7 +45,7 @@ public class ItemController {
     /**
      * Retrieves an Item by its ID.
      * 
-     * @param itemId The ID of the Item to retrieve.
+     * @param itemId ID of the Item to retrieve.
      * @return ResponseEntity containing the retrieved Item entity and the HTTP status.
      */
     @GetMapping("{id}")
@@ -56,7 +56,7 @@ public class ItemController {
     /**
      * Retrieves all Purchases for an Item by its ID.
      * 
-     * @param itemId The ID of the Item whose Purchases to retrieve.
+     * @param itemId ID of the Item whose Purchases to retrieve.
      * @return ResponseEntity containing List of Purchases and the HTTP status.
      */
     @GetMapping("{id}/purchases")
