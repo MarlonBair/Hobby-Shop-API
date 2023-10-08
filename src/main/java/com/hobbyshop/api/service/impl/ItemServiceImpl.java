@@ -49,7 +49,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item getItemByItemId(Long itemId) {
         return itemRepository.findById(itemId).orElseThrow(() -> 
-        new ResourceNotFoundException("Item", "ID", itemId));  
+            new ResourceNotFoundException("Item", "ID", itemId));  
     }
 
     /**
@@ -96,9 +96,7 @@ public class ItemServiceImpl implements ItemService {
         currentItem.setQuantity(newItemData.getQuantity());
         currentItem.setPrice(newItemData.getPrice());
        
-        itemRepository.save(currentItem);
-
-        return currentItem;
+        return itemRepository.save(currentItem);
     }
 
     /**
@@ -124,9 +122,8 @@ public class ItemServiceImpl implements ItemService {
         }
 
         item.setQuantity(item.getQuantity() + quantityChange);
-        itemRepository.save(item);
 
-        return item;
+        return itemRepository.save(item);
     }
 
     /**
@@ -141,8 +138,7 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.findById(itemId).orElseThrow(() ->
             new ResourceNotFoundException("Item", "ID", itemId));
         
-        itemRepository.deleteById(itemId);
-        
+        itemRepository.deleteById(itemId); 
     }
     
 }

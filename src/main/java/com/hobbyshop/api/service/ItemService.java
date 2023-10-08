@@ -20,5 +20,4 @@ public interface ItemService {
     Item updateItemQuantity(Long itemId, Integer quantityChange);
 
     void deleteItem(Long itemId);
-    
 }
