@@ -63,7 +63,7 @@ public class UserController {
      * @return ResponseEntity containing the retrieved User entity and the HTTP status.
      */
     @GetMapping("{userId}")
-    public ResponseEntity<User> getUserByUserId(@PathVariable long userId) {
+    public ResponseEntity<User> getUserByUserId(@PathVariable Long userId) {
         return new ResponseEntity<User>(userService.getUserByUserId(userId), HttpStatus.OK);
 
     }
@@ -85,7 +85,7 @@ public class UserController {
      * @return ResponseEntity containing List of Purchases and HTTP status.
      */
     @GetMapping("{userId}/purchases")
-    public ResponseEntity<List<Purchase>> getPurchasesByUserId(@PathVariable long userId) {
+    public ResponseEntity<List<Purchase>> getPurchasesByUserId(@PathVariable Long userId) {
         return new ResponseEntity<List<Purchase>>(userService.getAllPurchasesByUserId(userId), HttpStatus.OK);
     }
 
@@ -97,7 +97,7 @@ public class UserController {
      * @return ResponseEntity containing the updated User entity and the HTTP status.
      */
     @PutMapping("{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable long userId, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User user) {
         return new ResponseEntity<User>(userService.updateUser(user, userId), HttpStatus.OK);
     }
 
@@ -108,7 +108,7 @@ public class UserController {
      * @return ResponseEntity with a confirmation message and the HTTP status.
      */
     @DeleteMapping("{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable long userId) {
+    public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<String>("User deleted successfully.", HttpStatus.OK);
     } 
