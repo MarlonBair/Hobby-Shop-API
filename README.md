@@ -57,8 +57,21 @@ mvn test
 | /api/items/{id}/purchases | GET | Retrieves all Purchases for an Item by its ID. | |
 | /api/items | GET | Retrieves all Items in database. | |
 | /api/items/{id} | PUT | Updates an existing Item by its ID. | Item JSON |
-| /api/items/{id}/quantity | PATCH | Updates the quantity of Item by addition of a given amount. | Integer |
+| /api/items/{id}/quantity | PATCH | Updates the quantity of Item by addition of a given amount. | Integer (Quantity) |
 | /api/items/{id} | DELETE | Deletes an Item by its ID. | |
+
+
+# Purchase Endpoints:
+
+| URL | METHOD | DESCRIPTION | BODY |
+| - | - | - | - |
+| /api/users/{userId}/purchases | POST | Creates a new Purchase with the given userId and itemId. | Long (itemId) |
+| /api/purchases/{id} | GET | Retrieves a Purchase by its ID. | |
+| /api/purchases | GET | Retrieves all Purchases in the database. | |
+| /api/purchases/{id}/item | PUT | Updates the Item associated with an existing Purchase. | Long (itemId) |
+| /api/purchases/{id}/user | PUT | Updates the User associated with an existing Purchase. | Long (userId) |
+| /api/purchases/{id} | DELETE | Deletes a Purchase by its ID. | |
+
 
 # Example JSON Bodies:
 
