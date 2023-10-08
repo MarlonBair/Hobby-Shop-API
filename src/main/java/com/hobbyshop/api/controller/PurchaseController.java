@@ -34,8 +34,8 @@ public class PurchaseController {
      * @param purchaseId ID of the Purchase to retrieve.
      * @return ResponseEntity containing the retrieved Purchase entity and the HTTP status.
      */
-    @GetMapping("{id}")
-    public ResponseEntity<Purchase> getPurchaseByPurchaseId(@PathVariable("id") Long purchaseId) {
+    @GetMapping("{purchaseId}")
+    public ResponseEntity<Purchase> getPurchaseByPurchaseId(@PathVariable Long purchaseId) {
         return new ResponseEntity<Purchase>(purchaseService.getPurchaseByPurchaseId(purchaseId), HttpStatus.OK);
     }
 
@@ -56,8 +56,8 @@ public class PurchaseController {
      * @param itemId ID of the Item to associate with the Purchase.
      * @return ResponseEntity containing the updated Purchase entity and the HTTP status.
      */
-    @PutMapping("{id}/item")
-    public ResponseEntity<Purchase> updatePurchaseItemByItemId(@PathVariable("id") Long purchaseId, @RequestBody Long itemId) {
+    @PutMapping("{purchaseId}/item")
+    public ResponseEntity<Purchase> updatePurchaseItemByItemId(@PathVariable Long purchaseId, @RequestBody Long itemId) {
         return new ResponseEntity<Purchase>(purchaseService.updatePurchaseItemByItemId(purchaseId, itemId), HttpStatus.OK);
     }
 
@@ -68,8 +68,8 @@ public class PurchaseController {
      * @param userId ID of the User to associate with the Purchase.
      * @return ResponseEntity containing the updated Purchase entity and the HTTP status.
      */
-    @PutMapping("{id}/user")
-    public ResponseEntity<Purchase> updatePurchaseUserByUserId(@PathVariable("id") Long purchaseId, @RequestBody Long userId) {
+    @PutMapping("{purchaseId}/user")
+    public ResponseEntity<Purchase> updatePurchaseUserByUserId(@PathVariable Long purchaseId, @RequestBody Long userId) {
         return new ResponseEntity<Purchase>(purchaseService.updatePurchaseUserByUserId(purchaseId, userId), HttpStatus.OK);
     }
 
@@ -79,8 +79,8 @@ public class PurchaseController {
      * @param purchaseId ID of the Purchase to delete.
      * @return ResponseEntity with a confirmation message and the HTTP status.
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deletePurchase(@PathVariable("id") Long purchaseId) {
+    @DeleteMapping("{purchaseId}")
+    public ResponseEntity<String> deletePurchase(@PathVariable Long purchaseId) {
         purchaseService.deletePurchase(purchaseId);
         return new ResponseEntity<String>("Purchase deleted successfully.", HttpStatus.OK);
     }

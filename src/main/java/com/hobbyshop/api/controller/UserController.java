@@ -51,8 +51,8 @@ public class UserController {
      * @param itemId Id of Item being purchased.
      * @return ResponseEntity containing the created Purchase and HTTP Status.
      */
-    @PostMapping("{id}/purchases")
-    public ResponseEntity<Purchase> createPurchase(@PathVariable("id") Long userId, @RequestBody Long itemId) {
+    @PostMapping("{userId}/purchases")
+    public ResponseEntity<Purchase> createPurchase(@PathVariable Long userId, @RequestBody Long itemId) {
         return new ResponseEntity<Purchase>(purchaseService.createPurchase(userId, itemId), HttpStatus.CREATED);
     }
 
@@ -62,8 +62,8 @@ public class UserController {
      * @param userId ID of the User to retrieve.
      * @return ResponseEntity containing the retrieved User entity and the HTTP status.
      */
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUserByUserId(@PathVariable("id") long userId) {
+    @GetMapping("{userId}")
+    public ResponseEntity<User> getUserByUserId(@PathVariable long userId) {
         return new ResponseEntity<User>(userService.getUserByUserId(userId), HttpStatus.OK);
 
     }
@@ -84,8 +84,8 @@ public class UserController {
      * @param userId ID of User whose Purchases to retrieve.
      * @return ResponseEntity containing List of Purchases and HTTP status.
      */
-    @GetMapping("{id}/purchases")
-    public ResponseEntity<List<Purchase>> getPurchasesByUserId(@PathVariable("id") long userId) {
+    @GetMapping("{userId}/purchases")
+    public ResponseEntity<List<Purchase>> getPurchasesByUserId(@PathVariable long userId) {
         return new ResponseEntity<List<Purchase>>(userService.getAllPurchasesByUserId(userId), HttpStatus.OK);
     }
 
@@ -96,8 +96,8 @@ public class UserController {
      * @param user Updated User entity.
      * @return ResponseEntity containing the updated User entity and the HTTP status.
      */
-    @PutMapping("{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") long userId, @RequestBody User user) {
+    @PutMapping("{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable long userId, @RequestBody User user) {
         return new ResponseEntity<User>(userService.updateUser(user, userId), HttpStatus.OK);
     }
 
@@ -107,8 +107,8 @@ public class UserController {
      * @param userId ID of the User to delete.
      * @return ResponseEntity with a confirmation message and the HTTP status.
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") long userId) {
+    @DeleteMapping("{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable long userId) {
         userService.deleteUser(userId);
         return new ResponseEntity<String>("User deleted successfully.", HttpStatus.OK);
     } 

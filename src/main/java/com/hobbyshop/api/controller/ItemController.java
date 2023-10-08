@@ -48,8 +48,8 @@ public class ItemController {
      * @param itemId ID of the Item to retrieve.
      * @return ResponseEntity containing the retrieved Item entity and the HTTP status.
      */
-    @GetMapping("{id}")
-    public ResponseEntity<Item> getItemByItemId(@PathVariable("id") Long itemId ) {
+    @GetMapping("{itemId}")
+    public ResponseEntity<Item> getItemByItemId(@PathVariable Long itemId ) {
         return new ResponseEntity<Item>(itemService.getItemByItemId(itemId), HttpStatus.OK);
     }
 
@@ -59,8 +59,8 @@ public class ItemController {
      * @param itemId ID of the Item whose Purchases to retrieve.
      * @return ResponseEntity containing List of Purchases and the HTTP status.
      */
-    @GetMapping("{id}/purchases")
-    public ResponseEntity<List<Purchase>> getPurchasesByItemId(@PathVariable("id") Long itemId) {
+    @GetMapping("{itemId}/purchases")
+    public ResponseEntity<List<Purchase>> getPurchasesByItemId(@PathVariable Long itemId) {
         return new ResponseEntity<List<Purchase>>(itemService.getAllPurchasesByItemId(itemId), HttpStatus.OK);
     }
 
@@ -81,8 +81,8 @@ public class ItemController {
      * @param item Updated Item entity.
      * @return ResponseEntity containing updated Item and HTTP status.
      */
-    @PutMapping("{id}")
-    public ResponseEntity<Item> updateItem(@PathVariable("id") Long itemId, @RequestBody Item item) {
+    @PutMapping("{itemId}")
+    public ResponseEntity<Item> updateItem(@PathVariable Long itemId, @RequestBody Item item) {
         return new ResponseEntity<Item>(itemService.updateItem(item, itemId), HttpStatus.OK);
     }
 
@@ -93,8 +93,8 @@ public class ItemController {
      * @param quantityChange Integer value of amount to be added to Item's quantity.
      * @return ResponseEntity containing updated Item and HTTP status. 
      */
-    @PatchMapping("{id}/quantity")
-    public ResponseEntity<Item> updateItemQuantity(@PathVariable("id") Long itemId, @RequestBody Integer quantityChange) {
+    @PatchMapping("{itemId}/quantity")
+    public ResponseEntity<Item> updateItemQuantity(@PathVariable Long itemId, @RequestBody Integer quantityChange) {
         return new ResponseEntity<Item>(itemService.updateItemQuantity(itemId, quantityChange), HttpStatus.OK);
     }
 
@@ -104,8 +104,8 @@ public class ItemController {
      * @param itemId ID of Item to delete.
      * @return ResponseEntity containing String confirmation of Item deletion and HTTP status.
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteItem(@PathVariable("id") Long itemId) {
+    @DeleteMapping("{itemId}")
+    public ResponseEntity<String> deleteItem(@PathVariable Long itemId) {
         itemService.deleteItem(itemId);
         return new ResponseEntity<String>("Item deleted successfully.", HttpStatus.OK);
     }
