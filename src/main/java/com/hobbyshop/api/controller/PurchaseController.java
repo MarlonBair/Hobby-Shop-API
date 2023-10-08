@@ -50,7 +50,7 @@ public class PurchaseController {
     }
 
     /**
-     * Updates the Item associated with an existing Purchase by its ID.
+     * Updates the Item associated with an existing Purchase.
      *
      * @param purchaseId ID of the Purchase to update.
      * @param itemId ID of the Item to associate with the Purchase.
@@ -62,7 +62,7 @@ public class PurchaseController {
     }
 
     /**
-     * Updates the User associated with an existing Purchase by its ID.
+     * Updates the User associated with an existing Purchase.
      *
      * @param purchaseId ID of the Purchase to update.
      * @param userId ID of the User to associate with the Purchase.

@@ -70,8 +70,7 @@ public class ItemControllerTest {
         Long itemId = 1L;
         given(itemService.getItemByItemId(itemId)).willReturn(item);
 
-        mockMvc.perform(get("/api/items/" + itemId)
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/items/" + itemId))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.itemId").value(item.getItemId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(item.getName()))
@@ -84,8 +83,7 @@ public class ItemControllerTest {
         List<Purchase> purchases = Arrays.asList(new Purchase());
         given(itemService.getAllPurchasesByItemId(itemId)).willReturn(purchases);
 
-        mockMvc.perform(get("/api/items/" + itemId + "/purchases")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/items/" + itemId + "/purchases"))
                 .andExpect(status().isOk());
     }
 
@@ -94,8 +92,7 @@ public class ItemControllerTest {
         List<Item> items = Arrays.asList(item);
         given(itemService.listAllItems()).willReturn(items);
 
-        mockMvc.perform(get("/api/items")
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/items"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].itemId").value(item.getItemId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(item.getName()))
@@ -134,8 +131,7 @@ public class ItemControllerTest {
     @Test
     void deleteItem() throws Exception {
         Long itemId = 1L;
-        mockMvc.perform(delete("/api/items/" + itemId)
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/items/" + itemId))
                 .andExpect(status().isOk());
     }
 }

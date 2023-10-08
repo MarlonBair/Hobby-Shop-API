@@ -77,8 +77,7 @@ public class UserControllerTest {
         long userId = 1L;
         given(userService.getUserByUserId(userId)).willReturn(user);
 
-        mockMvc.perform(get("/api/users/" + userId)
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/users/" + userId))
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.userId").value(user.getUserId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(user.getName()))
@@ -91,8 +90,7 @@ public class UserControllerTest {
 
         given(userService.listAllUsers()).willReturn(users);
 
-        mockMvc.perform(get("/api/users")
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/users"))
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$[0].userId").value(user.getUserId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(user.getName()))
@@ -111,8 +109,7 @@ public class UserControllerTest {
 
         given(userService.getAllPurchasesByUserId(userId)).willReturn(purchases);
 
-        mockMvc.perform(get("/api/users/" + userId + "/purchases")
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/users/" + userId + "/purchases"))
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$[0].purchaseId").value(purchase.getPurchaseId()))
             .andExpect(MockMvcResultMatchers.jsonPath("$[0].purchaseDate").value(purchase.getPurchaseDate().toString()));
@@ -124,8 +121,7 @@ public class UserControllerTest {
 
         given(userService.getAllPurchasesByUserId(userId)).willThrow(new ResourceNotFoundException("User", "ID", userId));
 
-        mockMvc.perform(get("/api/users/" + userId + "/purchases")
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/users/" + userId + "/purchases"))
             .andExpect(status().isNotFound());
     }
 
@@ -148,8 +144,7 @@ public class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
         long userId = 1L;
-        mockMvc.perform(delete("/api/users/" + userId)
-            .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/api/users/" + userId))
             .andExpect(status().isOk());
     }
 
