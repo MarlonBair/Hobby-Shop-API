@@ -15,6 +15,9 @@ import com.hobbyshop.api.repository.PurchaseRepository;
 import com.hobbyshop.api.repository.UserRepository;
 import com.hobbyshop.api.service.PurchaseService;
 
+/**
+ * Implementation for PurchaseService.
+ */
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
 
@@ -28,6 +31,14 @@ public class PurchaseServiceImpl implements PurchaseService{
         this.userRepository = userRepository;
     }
 
+    /**
+     * Creates a new Purchase with the given userId and itemId.
+     *
+     * @param userId The ID of the User making the purchase.
+     * @param itemId The ID of the Item being purchased.
+     * @return The created Purchase entity.
+     * @throws ResourceNotFoundException If no User or Item with the given IDs is found.
+     */
     @Override
     @Transactional
     public Purchase createPurchase(Long userId, Long itemId) {
@@ -46,17 +57,37 @@ public class PurchaseServiceImpl implements PurchaseService{
 
     }
 
+    /**
+     * Retrieves a Purchase from the database by its ID.
+     *
+     * @param purchaseId The ID of the Purchase to retrieve.
+     * @return The retrieved Purchase entity.
+     * @throws ResourceNotFoundException If no Purchase with the given ID is found.
+     */
     @Override
     public Purchase getPurchaseByPurchaseId(Long purchaseId) {
         return purchaseRepository.findById(purchaseId).orElseThrow(() ->
             new ResourceNotFoundException("Purchase", "ID", purchaseId));
     }
 
+    /**
+     * Retrieves all Purchases from the database.
+     *
+     * @return List of all Purchases.
+     */
     @Override
     public List<Purchase> listAllPurchases() {
         return purchaseRepository.findAll();
     }
 
+    /**
+     * Updates the Item associated with a Purchase.
+     *
+     * @param purchaseId The ID of the Purchase to update.
+     * @param itemId The ID of the new Item to associate with the Purchase.
+     * @return The updated Purchase entity.
+     * @throws ResourceNotFoundException If no Purchase or Item with the given IDs is found.
+     */
     @Override
     @Transactional
     public Purchase updatePurchaseItemByItemId(Long purchaseId, Long itemId) {
@@ -71,6 +102,14 @@ public class PurchaseServiceImpl implements PurchaseService{
         return purchaseRepository.save(currentPurchase);
     }
 
+    /**
+     * Updates the User associated with a Purchase.
+     *
+     * @param purchaseId The ID of the Purchase to update.
+     * @param userId The ID of the new User to associate with the Purchase.
+     * @return The updated Purchase entity.
+     * @throws ResourceNotFoundException If no Purchase or User with the given IDs is found.
+     */
     @Override
     @Transactional
     public Purchase updatePurchaseUserByUserId(Long purchaseId, Long userId) {
@@ -85,6 +124,12 @@ public class PurchaseServiceImpl implements PurchaseService{
         return purchaseRepository.save(currentPurchase);
     }
 
+    /**
+     * Deletes a Purchase by its ID.
+     *
+     * @param purchaseId The ID of the Purchase to delete.
+     * @throws ResourceNotFoundException If no Purchase with the given ID is found.
+     */
     @Override
     @Transactional
     public void deletePurchase(Long purchaseId) {
