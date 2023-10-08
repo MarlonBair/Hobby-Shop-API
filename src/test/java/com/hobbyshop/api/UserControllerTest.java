@@ -14,6 +14,7 @@ import com.hobbyshop.api.controller.UserController;
 import com.hobbyshop.api.exception.ResourceNotFoundException;
 import com.hobbyshop.api.model.Purchase;
 import com.hobbyshop.api.model.User;
+import com.hobbyshop.api.service.PurchaseService;
 import com.hobbyshop.api.service.UserService;
 
 import static org.mockito.BDDMockito.given;
@@ -37,10 +38,13 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     /**
-     * Mock UserService for testing.
+     * Mock UserService and PurchaseService for testing.
      */
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private PurchaseService purchaseService;
 
     /**
      * User instance for testing.
